@@ -32,8 +32,8 @@ export const Login = () => {
     e.preventDefault();
     if (password !== confirmpassword) {
       Swal.fire({
-        title: "Warning!",
-        text: "Passwords do not match!",
+        title: "Oops!",
+        text: "Your passwords don’t match. Please try again.",
         icon: "warning",
         timer: 1500,
         showConfirmButton: false,
@@ -45,8 +45,8 @@ export const Login = () => {
     else {
       await createUserWithEmailAndPassword(auth, email, password).then(() => {
         Swal.fire({
-          title: "Success!",
-          text: "You have signed up successfully!",
+          title: "Welcome!",
+          text: "Your account has been created successfully",
           icon: "success",
           timer: 1500,
           showConfirmButton: false,
@@ -67,12 +67,23 @@ export const Login = () => {
       // window.location.reload();
       window.location.href = "https://meatify-shopping.netlify.app/"
       Swal.fire({
-        title: "Success!",
-        text: "Logged in successfully!",
+        title: "Welcome back!",
+        text: "You have logged in successfully",
         icon: "success",
         timer: 1500,
         showConfirmButton: false,
         iconColor: "green",
+        color: "#000"
+      });
+    })
+    .catch((error)=>{
+      Swal.fire({
+        title: "Login Failed!",
+        text: "Incorrect email or password. Please try again",
+        icon: "error",
+        timer: 1500,
+        showConfirmButton: false,
+        iconColor: "red",
         color: "#000"
       });
     })
